@@ -1,5 +1,5 @@
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
@@ -45,7 +45,7 @@ public class ConnectedComponentsTests {
             e.addAll(expect);
             r.addAll(result);
 
-            Assert.assertEquals(e.toString(), r.toString());
+            Assertions.assertEquals(e.toString(), r.toString());
         }
     }
 
@@ -75,7 +75,7 @@ public class ConnectedComponentsTests {
             e.addAll(expect);
             r.addAll(result);
 
-            Assert.assertEquals(e.toString(), r.toString());
+            Assertions.assertEquals(e.toString(), r.toString());
         }
     }
 
@@ -99,7 +99,7 @@ public class ConnectedComponentsTests {
             e.addAll(expect);
             r.addAll(result);
 
-            Assert.assertEquals(e.toString(), r.toString());
+            Assertions.assertEquals(e.toString(), r.toString());
         }
     }
 
@@ -144,7 +144,7 @@ public class ConnectedComponentsTests {
             e.addAll(expect);
             r.addAll(result);
 
-            Assert.assertEquals(e.toString(), r.toString());
+            Assertions.assertEquals(e.toString(), r.toString());
         }
     }
 
@@ -177,7 +177,7 @@ public class ConnectedComponentsTests {
             e.addAll(expect);
             r.addAll(result);
 
-            Assert.assertEquals(e.toString(), r.toString());
+            Assertions.assertEquals(e.toString(), r.toString());
         }
     }
 }

@@ -1,5 +1,5 @@
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
@@ -20,7 +20,7 @@ public class TopologicalSortTests {
         Collection<String> topSorter = TopologicalSorting.topSort(graph);
 
         // Assert
-        Assert.assertEquals("[A, B, E, D, C, F]", topSorter.toString());
+        Assertions.assertEquals("[A, B, E, D, C, F]", topSorter.toString());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TopologicalSortTests {
         Collection<String> topSorter = TopologicalSorting.topSort(graph);
 
         // Assert
-        Assert.assertEquals("[IDEs, variables, conditionals, loops, bits]", topSorter.toString());
+        Assertions.assertEquals("[IDEs, variables, conditionals, loops, bits]", topSorter.toString());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TopologicalSortTests {
         Collection<String> topSorted = TopologicalSorting.topSort(graph);
 
         // Assert
-        Assert.assertEquals("[A]", topSorted.toString());
+        Assertions.assertEquals("[A]", topSorted.toString());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class TopologicalSortTests {
         Collection<String> topSorted = TopologicalSorting.topSort(graph);
 
         // Assert
-        Assert.assertEquals("[]", topSorted.toString());
+        Assertions.assertEquals("[]", topSorted.toString());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class TopologicalSortTests {
         // Assert
         String actual = topSorted.toString();
         boolean isCorrectOrder = "[H, G, F, E, C, D, B, A]".equals(actual) || "[D, F, E, C, B, A, H, G]".equals(actual);
-        Assert.assertTrue(isCorrectOrder);
+        Assertions.assertTrue(isCorrectOrder);
     }
 
     @Test
@@ -99,10 +99,10 @@ public class TopologicalSortTests {
         Collection<String> topSorted = TopologicalSorting.topSort(graph);
 
         // Assert
-        Assert.assertEquals("[First, Second]", topSorted.toString());
+        Assertions.assertEquals("[First, Second]", topSorted.toString());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void TestTopSortGraph2VerticesWithCycle() {
         // Arrange
         Map<String, List<String>> graph = new LinkedHashMap<>();
@@ -111,10 +111,10 @@ public class TopologicalSortTests {
 
         // Act
         // Assert
-        Collection<String> topSorted = TopologicalSorting.topSort(graph);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> TopologicalSorting.topSort(graph));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void TestTopSortGraph7VerticesWithCycle() {
         // Arrange
         Map<String, List<String>> graph = new LinkedHashMap<>();
@@ -128,6 +128,6 @@ public class TopologicalSortTests {
 
         // Act
         // Assert
-        Collection<String> topSorted = TopologicalSorting.topSort(graph);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> TopologicalSorting.topSort(graph));
     }
 }

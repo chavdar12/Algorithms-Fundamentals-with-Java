@@ -12,7 +12,7 @@ public class Fibonacci {
         int n = Integer.parseInt(rd.readLine());
         rd.close();
 
-        dp = new long[n + 1];
+        dp = new long[Math.max(n + 1, 3)];
 
         dp[1] = 1;
         dp[2] = 1;

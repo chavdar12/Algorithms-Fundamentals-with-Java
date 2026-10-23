@@ -28,7 +28,7 @@ public class LongestIncreasingSubsequence {
 
             for (int j = 0; j < i; j++) {
                 if (s[j] < current && length[j] + 1 > ls) {
-                    ls += length[j];
+                    ls = length[j] + 1;
                     lastIndex = j;
                 }
             }

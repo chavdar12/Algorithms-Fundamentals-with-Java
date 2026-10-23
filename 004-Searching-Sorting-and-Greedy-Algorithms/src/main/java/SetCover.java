@@ -67,6 +67,10 @@ public class SetCover {
                 }
             }
 
+            if (notChosenCount == 0) {
+                throw new IllegalArgumentException("Universe cannot be covered by the given sets");
+            }
+
             selectedSets.add(chosenSet);
 
             for (int elem : chosenSet) {

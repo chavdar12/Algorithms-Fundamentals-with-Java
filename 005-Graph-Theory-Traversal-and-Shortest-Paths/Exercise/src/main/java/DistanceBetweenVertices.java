@@ -67,6 +67,10 @@ public class DistanceBetweenVertices {
         dist[indexOfNode] = 0;
         queue.offer(indexOfNode);
 
+        if (src == dest) {
+            return true;
+        }
+
         while (!queue.isEmpty()) {
 
             int u = queue.poll();

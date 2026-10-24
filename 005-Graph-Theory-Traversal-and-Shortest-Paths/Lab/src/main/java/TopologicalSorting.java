@@ -80,8 +80,10 @@ public class TopologicalSorting {
         }
     }
 
-    /*public static Collection<String> topSort(Map<String, List<String>> graph) {
+    public static Collection<String> topSortSourceRemoval(Map<String, List<String>> input) {
 
+        // nodes are removed while sorting, so work on a copy and leave the caller's graph intact
+        Map<String, List<String>> graph = new LinkedHashMap<>(input);
         Map<String, Integer> dependenciesCount = getDependenciesCount(graph);
 
         List<String> sorted = new ArrayList<>();
@@ -110,7 +112,7 @@ public class TopologicalSorting {
         }
 
         return sorted;
-    }*/
+    }
 
     private static Map<String, Integer> getDependenciesCount(Map<String, List<String>> graph) {
 

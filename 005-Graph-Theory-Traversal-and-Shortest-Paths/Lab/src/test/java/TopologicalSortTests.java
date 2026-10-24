@@ -130,4 +130,62 @@ public class TopologicalSortTests {
         // Assert
         Assertions.assertThrows(IllegalArgumentException.class, () -> TopologicalSorting.topSort(graph));
     }
+
+    @Test
+    public void TestSourceRemovalAcyclicGraph6Vertices() {
+        // Arrange
+        Map<String, List<String>> graph = new LinkedHashMap<>();
+        graph.put("A", new ArrayList<>(Arrays.asList("B", "C")));
+        graph.put("B", new ArrayList<>(Arrays.asList("D", "E")));
+        graph.put("C", new ArrayList<>(Arrays.asList("F")));
+        graph.put("D", new ArrayList<>(Arrays.asList("C", "F")));
+        graph.put("E", new ArrayList<>(Arrays.asList("D")));
+        graph.put("F", new ArrayList<>());
+
+        // Act
+        Collection<String> topSorted = TopologicalSorting.topSortSourceRemoval(graph);
+
+        // Assert
+        Assertions.assertEquals("[A, B, E, D, C, F]", topSorted.toString());
+        Assertions.assertEquals(6, graph.size());
+    }
+
+    @Test
+    public void TestSourceRemovalAcyclicGraph5Vertices() {
+        // Arrange
+        Map<String, List<String>> graph = new LinkedHashMap<>();
+        graph.put("IDEs", new ArrayList<>(Arrays.asList("variables", "loops")));
+        graph.put("variables", new ArrayList<>(Arrays.asList("conditionals", "loops", "bits")));
+        graph.put("loops", new ArrayList<>(Arrays.asList("bits")));
+        graph.put("bits", new ArrayList<>(Arrays.asList()));
+        graph.put("conditionals", new ArrayList<>(Arrays.asList("loops")));
+
+        // Act
+        Collection<String> topSorted = TopologicalSorting.topSortSourceRemoval(graph);
+
+        // Assert
+        Assertions.assertEquals("[IDEs, variables, conditionals, loops, bits]", topSorted.toString());
+    }
+
+    @Test
+    public void TestSourceRemovalEmptyGraph() {
+        Assertions.assertEquals("[]", TopologicalSorting.topSortSourceRemoval(new LinkedHashMap<>()).toString());
+    }
+
+    @Test
+    public void TestSourceRemovalGraph7VerticesWithCycle() {
+        // Arrange
+        Map<String, List<String>> graph = new LinkedHashMap<>();
+        graph.put("A", new ArrayList<>(Arrays.asList("B")));
+        graph.put("B", new ArrayList<>(Arrays.asList("C")));
+        graph.put("C", new ArrayList<>(Arrays.asList("D", "E")));
+        graph.put("D", new ArrayList<>(Arrays.asList("E")));
+        graph.put("E", new ArrayList<>(Arrays.asList("F", "C")));
+        graph.put("F", new ArrayList<>());
+        graph.put("Z", new ArrayList<>(Arrays.asList("A")));
+
+        // Act
+        // Assert
+        Assertions.assertThrows(IllegalArgumentException.class, () -> TopologicalSorting.topSortSourceRemoval(graph));
+    }
 }
